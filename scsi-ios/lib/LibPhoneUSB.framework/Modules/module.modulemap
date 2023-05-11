@@ -1,0 +1,6 @@
+framework module LibPhoneUSB {
+  umbrella header "LibPhoneUSB.h"
+
+  export *
+  module * { export * }
+}

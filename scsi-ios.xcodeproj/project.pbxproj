@@ -14,6 +14,8 @@
 		294C91712A0CCFCF00103018 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 294C91702A0CCFCF00103018 /* Assets.xcassets */; };
 		294C91742A0CCFCF00103018 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 294C91722A0CCFCF00103018 /* LaunchScreen.storyboard */; };
 		294C91772A0CCFCF00103018 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 294C91762A0CCFCF00103018 /* main.m */; };
+		294C91EC2A0CE1E600103018 /* LibPhoneUSB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294C91EB2A0CE1E600103018 /* LibPhoneUSB.framework */; };
+		294C91EF2A0CE28100103018 /* libc++.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 294C91EE2A0CE28100103018 /* libc++.1.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,8 @@
 		294C91732A0CCFCF00103018 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		294C91752A0CCFCF00103018 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		294C91762A0CCFCF00103018 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		294C91EB2A0CE1E600103018 /* LibPhoneUSB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LibPhoneUSB.framework; sourceTree = "<group>"; };
+		294C91EE2A0CE28100103018 /* libc++.1.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.1.tbd"; path = "usr/lib/libc++.1.tbd"; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +40,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				294C91EF2A0CE28100103018 /* libc++.1.tbd in Frameworks */,
+				294C91EC2A0CE1E600103018 /* LibPhoneUSB.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -47,6 +53,7 @@
 			children = (
 				294C91632A0CCFC800103018 /* scsi-ios */,
 				294C91622A0CCFC800103018 /* Products */,
+				294C91ED2A0CE28100103018 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -61,6 +68,7 @@
 		294C91632A0CCFC800103018 /* scsi-ios */ = {
 			isa = PBXGroup;
 			children = (
+				294C91E62A0CD8C000103018 /* lib */,
 				294C91642A0CCFC800103018 /* AppDelegate.h */,
 				294C91652A0CCFC800103018 /* AppDelegate.m */,
 				294C91672A0CCFC800103018 /* SceneDelegate.h */,
@@ -74,6 +82,22 @@
 				294C91762A0CCFCF00103018 /* main.m */,
 			);
 			path = "scsi-ios";
+			sourceTree = "<group>";
+		};
+		294C91E62A0CD8C000103018 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				294C91EB2A0CE1E600103018 /* LibPhoneUSB.framework */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		294C91ED2A0CE28100103018 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				294C91EE2A0CE28100103018 /* libc++.1.tbd */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,7 +249,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -277,7 +301,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -292,6 +316,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W8ZHM9C4HZ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/scsi-ios/lib",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "scsi-ios/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -318,6 +347,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W8ZHM9C4HZ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/scsi-ios/lib",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "scsi-ios/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
