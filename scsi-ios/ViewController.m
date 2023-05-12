@@ -8,9 +8,10 @@
 #import "ViewController.h"
 #import <ExternalAccessory/ExternalAccessory.h>
 #import <LibPhoneUSB/LibPhoneUSB.h>
+#import <EXFileSystem/EXFileSystem.h>
 
 
-@interface ViewController ()
+@interface ViewController ()<EXManagerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *accessoryList;
 @property (nonatomic, strong) EAAccessory *selectedAccessory;
@@ -29,7 +30,7 @@
 @property (nonatomic,strong)NSString *protocolString;
 
 @property (nonatomic, strong) myUSB *musb;
-
+@property (nonatomic, strong) EXManager *mfilesystem;
 
 @end
 
@@ -41,6 +42,7 @@
     uint32_t dCBWTag = 0x80800000;
     
     dCBWTag++;
+ 
     
     
     NSBundle *mainBundle = [NSBundle mainBundle];
@@ -59,6 +61,9 @@
     _accessoryList = [[NSMutableArray alloc] initWithArray:[[EAAccessoryManager sharedAccessoryManager] connectedAccessories]];
     
     _musb = [myUSB shareInstance];
+    _mfilesystem = [EXManager defaultManager];
+    _mfilesystem.delegate = self;
+    
     
 }
 
@@ -71,7 +76,35 @@
   //  [_eaSessionController closeSession];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-
+#pragma mark - 文件系统代理
+-(BOOL) ex_readBlock:(uint64_t)lba count:(uint64_t)count buffer:(void*)buffer
+{
+    int iRet = Disk_scsiRead(lba, buffer, count);
+    if(iRet == 0){
+        return YES;
+    }else{
+        NSLog(@"写数据失败");
+        return NO;
+    }
+}
+-(BOOL) ex_writeBlock:(uint64_t)lba count:(uint64_t)count buffer:(void*)buffer
+{
+    int iRet = Disk_scsiWrite(lba, buffer, count);
+    if (iRet==0) {
+        return YES;
+    }else{
+        NSLog(@"读数据失败");
+        return NO;
+    }
+}
+-(int)ex_init
+{
+    if(self.isConnected){
+        return 0;
+    }else{
+        return 1;
+    }
+}
 
 #pragma mark - 打开数据收发通道
 - (void)openMySession
@@ -347,6 +380,51 @@
         free(readbuf);
     }
     free(buf);
+    
+}
+- (IBAction)tofilesystem:(id)sender {
+    
+    if(!self.isConnected){
+        NSLog(@"未检测到设备");
+        return;
+    }
+    //1
+    BOOL res = [_mfilesystem mount];
+    if(!res){
+        NSLog(@"文件系统加载失败");
+        return;
+    }
+    
+    dispatch_semaphore_t    semaphore = dispatch_semaphore_create(0);
+    [_mfilesystem gettot_sect:^(uint64_t tot_sect, uint64_t fre_sect, int ret) {
+        
+        if(ret==0){
+            double TOL=tot_sect*1.0f*512/1024/1024/1024;
+            double fr=fre_sect*1.0f*512/1024/1024/1024;
+            NSLog(@"%@",[NSString stringWithFormat:@"设备总空间：%.2f G\r\n可用空间：%.2f G。\r\n", TOL,fr]);
+            
+        }
+        dispatch_semaphore_signal(semaphore);
+    }];
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    
+    NSMutableArray * arr  =[_mfilesystem listDir:@"0:"];
+    //文件数
+    for(int i=0;i<arr.count;i++){
+        EXFileStat *mode = arr[i];
+        NSLog(@"%@", [NSString stringWithFormat:@"%@------,%@",mode.fname,mode.date ]);
+    }
+    NSLog(@"读取完成");
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    [_mfilesystem unmount];
     
 }
 

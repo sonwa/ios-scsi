@@ -16,6 +16,7 @@
 		294C91772A0CCFCF00103018 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 294C91762A0CCFCF00103018 /* main.m */; };
 		294C91EC2A0CE1E600103018 /* LibPhoneUSB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294C91EB2A0CE1E600103018 /* LibPhoneUSB.framework */; };
 		294C91EF2A0CE28100103018 /* libc++.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 294C91EE2A0CE28100103018 /* libc++.1.tbd */; };
+		296B9C762A0E33EC0050534E /* EXFileSystem.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 296B9C752A0E33EC0050534E /* EXFileSystem.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		294C91762A0CCFCF00103018 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		294C91EB2A0CE1E600103018 /* LibPhoneUSB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LibPhoneUSB.framework; sourceTree = "<group>"; };
 		294C91EE2A0CE28100103018 /* libc++.1.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.1.tbd"; path = "usr/lib/libc++.1.tbd"; sourceTree = SDKROOT; };
+		296B9C752A0E33EC0050534E /* EXFileSystem.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EXFileSystem.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				296B9C762A0E33EC0050534E /* EXFileSystem.framework in Frameworks */,
 				294C91EF2A0CE28100103018 /* libc++.1.tbd in Frameworks */,
 				294C91EC2A0CE1E600103018 /* LibPhoneUSB.framework in Frameworks */,
 			);
@@ -87,6 +90,7 @@
 		294C91E62A0CD8C000103018 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				296B9C752A0E33EC0050534E /* EXFileSystem.framework */,
 				294C91EB2A0CE1E600103018 /* LibPhoneUSB.framework */,
 			);
 			path = lib;

@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -50,6 +51,16 @@
                                 <buttonConfiguration key="configuration" style="plain" title="write"/>
                                 <connections>
                                     <action selector="towrite:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pvS-m0-hzy"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ts-ri-9Ux">
+                                <rect key="frame" x="55" y="281" width="102" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="filesystem"/>
+                                <connections>
+                                    <action selector="tofilesystem:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fbE-a1-jhO"/>
+                                    <action selector="towrite:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ai8-au-7yn"/>
                                 </connections>
                             </button>
                         </subviews>
